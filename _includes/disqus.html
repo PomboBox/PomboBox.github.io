@@ -1,0 +1,52 @@
+<div class="wrapper disqus-thread-wrapper">
+
+    <div id="disqus_thread"></div>
+
+    <script>
+        /**
+        * RECOMMENDED CONFIGURATION VARIABLES
+        * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        var disqus_config = function () {
+            this.page.url = '{{ site.url }}{{ page.url | uri_escape }}';
+            this.page.identifier = ('{{page.id}}').replace('/', '');
+            this.page.title = '{{page.title}}';
+        };
+
+        /**
+        * não carregar o Disqus logo que o blog é aberto
+        * http://willianjusten.com.br/perguntas-e-respostas-jekyll/#disqus
+        */
+
+        var disqus_loaded = false;
+
+        function load_disqus()
+        {
+            disqus_loaded = true;
+
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            //TODO: update disqus url
+            //dsq.src = '//xxxxx.disqus.com/embed.js';
+            dsq.setAttribute('data-timestamp', +new Date());
+
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            var ldr = document.getElementById('disqus_loader');
+        };
+
+        window.onscroll = function(e) {
+            if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 800)) {
+                //hit bottom of page
+                if (disqus_loaded==false)
+                    load_disqus()
+            }
+        };
+
+    </script>
+
+    <noscript>
+        Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </noscript>
+
+</div>

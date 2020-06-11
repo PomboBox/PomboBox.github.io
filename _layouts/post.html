@@ -1,0 +1,69 @@
+---
+layout: default
+---
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {% if page.language == "br" %}
+          {% assign dy = page.date | date: "%a" %}
+          {% case dy %}
+            {% when "Sun" %}Domingo,
+            {% when "Mon" %}Segunda-feira,
+            {% when "Tue" %}Terça-feira,
+            {% when "Wed" %}Quarta-feira,
+            {% when "Thu" %}Quinta-feira,
+            {% when "Sex" %}Sexta-feira,
+            {% when "Sat" %}Sábado,
+          {% endcase %}
+          {{ page.date | date: "%d" }} de
+          {% assign m = page.date | date: "%-m" %}
+          {% case m %}
+            {% when '1' %}Janeiro,
+            {% when '2' %}Fevereiro,
+            {% when '3' %}Março,
+            {% when '4' %}Abril,
+            {% when '5' %}Maio,
+            {% when '6' %}Junho,
+            {% when '7' %}Julho,
+            {% when '8' %}Agosto,
+            {% when '9' %}Setembro,
+            {% when '10' %}Outubro,
+            {% when '11' %}Novembro,
+            {% when '12' %}Dezembro,
+          {% endcase %}
+          {{ page.date | date: "%Y" }}
+        {% else %}
+          {{ page.date | date: '%A, %B %d, %Y' }}
+        {% endif %}
+      </time>
+      {% if page.author %} • 
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">{{ page.author }}
+        </span>
+      </span>
+      {% endif %}
+    </p>
+    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+    <p class="post-meta">
+      {% for category in page.categories %}
+        {{ category }}{% if forloop.last == false %},{% endif %}
+      {% endfor %}
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <span class="post-meta post-meta-tags">
+    Tags:
+    {% for tag in page.tags %}
+      {{ tag }}{% if forloop.last == false %},{% endif %}
+  	{% else %}
+			---
+    {% endfor %}
+  </span>
+
+</article>

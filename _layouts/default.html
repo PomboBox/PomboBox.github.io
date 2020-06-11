@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <div class="page-content">
+      
+      <div class="wrapper">
+        {{ content }}
+      </div>
+      
+      {% if page.id %}
+        {% include disqus.html %}
+      {% endif %}
+
+    </div>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>

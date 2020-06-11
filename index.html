@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1 class="page-heading">Posts (en)</h1>
+
+  {% include post-list.html %}
+
+  <h1 class="page-heading">Posts (br)</h1>
+
+  {% include post-list-br.html %}
+
+  <p class="rss-subscribe">Subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
+</div>
